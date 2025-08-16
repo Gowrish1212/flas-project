@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Portfolio</title>
+</head>
+<body>
+    <h1>Stock Portfolio</h1>
+    {% if portfolio %}
+        <table border="1">
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            {% for stock in portfolio %}
+            <tr>
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.shares }}</td>
+                <td>Rs{{ "%.2f"|format(stock.price) }}</td>
+                <td>Rs{{ "%.2f"|format(stock.total) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h3>Total Portfolio Value: Rs{{ "%.2f"|format(total_value) }}</h3>
+    {% else %}
+        <p>No stocks added yet.</p>
+    {% endif %}
+    <br>
+    <a href="/">Add More Stocks</a>
+</body>
+</html>
